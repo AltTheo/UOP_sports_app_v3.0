@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uop_sports_v3/screens/services/gym.dart';
+import 'package:uop_sports_v3/screens/services/sports.dart';
 
 class Services extends StatefulWidget {
   const Services({super.key});
@@ -36,9 +37,7 @@ class _ServicesState extends State<Services> {
         ),
         body: const TabBarView(children: [
           Gym(),
-          Center(
-            child: Text('View 2'),
-          ),
+          Sports(),
           Center(
             child: Text('View 3'),
           ),

@@ -100,7 +100,6 @@ class BookingsState extends State<Bookings> {
     var screenSize = MediaQuery.of(context).size;
     var screenHeight = screenSize.height;
     var screenWidth = screenSize.width;
-    final categorizedBookings = categorizeBookings();
     return DefaultTabController(
       length: 2,
       child: Scaffold(

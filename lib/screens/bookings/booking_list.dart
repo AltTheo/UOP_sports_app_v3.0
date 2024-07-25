@@ -7,7 +7,7 @@ import 'package:uop_sports_v3/utils/provider/refresh_screen.dart';
 class BookingsList extends StatelessWidget {
   final List<Map<String, String>> bookings;
 
-  const BookingsList({Key? key, required this.bookings}) : super(key: key);
+  const BookingsList({super.key, required this.bookings});
 
   List<Widget> buildGroupedBookings(BuildContext context) {
     Map<String, List<Map<String, String>>> groupedBookings = {};

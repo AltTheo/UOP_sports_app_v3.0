@@ -5,7 +5,6 @@ import 'package:uop_sports_v3/utils/provider/time_slot_provider.dart';
 import 'package:uop_sports_v3/common/widgets/booking_info.dart';
 import 'package:uop_sports_v3/common/widgets/time_slot.dart';
 import 'package:uop_sports_v3/components/buttons/book_button.dart';
-import 'package:uop_sports_v3/navigation/global_key.dart';
 
 class Gym extends StatefulWidget {
   const Gym({super.key});
@@ -90,67 +89,64 @@ class _GymState extends State<Gym> with AutomaticKeepAliveClientMixin {
       showModalBottomSheet(
           isScrollControlled: true,
           context: context,
-          builder: (context) => Padding(
-                padding: EdgeInsets.only(top: screenHeight * 0.01),
-                child: SizedBox(
-                  height: screenHeight * 0.85,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: screenHeight * 0.75,
-                        child: ListView.builder(
-                          itemCount: timeSlots.length,
-                          itemBuilder: (context, index) {
-                            final timeSlot = timeSlots[index];
-                            return Consumer<TimeSlotProvider>(
-                              builder: (context, provider, child) {
-                                return TimeSlot(
-                                  onTap: () {
-                                    provider.selectTimeSlot(
-                                      index,
-                                      timeSlot['time'],
-                                      timeSlot['capacity'],
-                                      Theme.of(context)
-                                          .colorScheme
-                                          .primaryContainer,
-                                    );
-                                  },
-                                  spaceLeft: timeSlot['capacity'],
-                                  time: formatTime(timeSlot['time']),
-                                  isSelected: provider.selectedIndex == index,
-                                  slotColor: provider.slotColorState,
-                                  borderColor: Theme.of(context)
-                                      .colorScheme
-                                      .onPrimaryContainer,
-                                );
-                              },
-                            );
-                          },
-                        ),
-                      ),
-                      const Spacer(),
-                      Padding(
-                        padding: EdgeInsets.only(bottom: screenHeight * 0.03),
-                        child: TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
+          builder: (context) {
+            var provider = Provider.of<TimeSlotProvider>(context);
+            return Padding(
+              padding: EdgeInsets.only(top: screenHeight * 0.01),
+              child: SizedBox(
+                height: screenHeight * 0.85,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: screenHeight * 0.75,
+                      child: ListView.builder(
+                        itemCount: timeSlots.length,
+                        itemBuilder: (context, index) {
+                          final timeSlot = timeSlots[index];
+                          return TimeSlot(
+                            onTap: () {
+                              provider.selectTimeSlot(
+                                index,
+                                timeSlot['time'],
+                                timeSlot['capacity'],
+                                Theme.of(context).colorScheme.primaryContainer,
+                              );
                             },
-                            child: Text(
-                              'Confirm',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.copyWith(
-                                      fontWeight: FontWeight.w500,
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .primary),
-                            )),
+                            spaceLeft: timeSlot['capacity'],
+                            time: formatTime(timeSlot['time']),
+                            isSelected: provider.tempSelectedIndex == index,
+                            slotColor: provider.tempSlotColorState,
+                            borderColor: Theme.of(context)
+                                .colorScheme
+                                .onPrimaryContainer,
+                          );
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                    const Spacer(),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: screenHeight * 0.03),
+                      child: TextButton(
+                          onPressed: () {
+                            provider.confirmSelection();
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            'Confirm',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
+                          )),
+                    ),
+                  ],
                 ),
-              ));
+              ),
+            );
+          });
     }
 
     return Scaffold(
