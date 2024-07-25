@@ -38,8 +38,31 @@ class InfoCard extends StatelessWidget {
               ),
               Positioned(
                 bottom: 0,
-                left: 5,
+                left: 0,
                 right: 0,
+                child: Container(
+                  height: screenHeight * 0.2,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20),
+                    ),
+                    gradient: LinearGradient(
+                      colors: [
+                        Theme.of(context).colorScheme.primary.withOpacity(0.6),
+                        Theme.of(context).colorScheme.primary.withOpacity(0.8),
+                        Colors.transparent,
+                      ],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 5,
+                left: 10,
+                right: 10,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

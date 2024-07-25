@@ -48,7 +48,7 @@ class _DiscoverState extends State<Discover> {
         color: Theme.of(context).colorScheme.primaryContainer,
       ),
       appBar: AppBar(
-        title: Text('Discover'),
+        title: const Text('Discover'),
       ),
       body: RefreshIndicator.adaptive(
         onRefresh: () async {},

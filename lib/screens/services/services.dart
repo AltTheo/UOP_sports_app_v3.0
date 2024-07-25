@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:uop_sports_v3/common/app_features/icons.dart';
 import 'package:uop_sports_v3/screens/services/gym.dart';
 
 class Services extends StatefulWidget {
@@ -17,7 +15,7 @@ class _ServicesState extends State<Services> {
       length: 5,
       child: Scaffold(
         appBar: AppBar(
-          bottom: const TabBar(tabs: [
+          bottom: const TabBar(dividerColor: Colors.transparent, tabs: [
             Tab(
               text: 'Gym',
             ),

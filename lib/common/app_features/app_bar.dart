@@ -5,5 +5,5 @@ import 'package:flutter/material.dart';
 class UopAppBar{
   UopAppBar._();
 
-  static Image appLogo =  Image(image: AssetImage(''),);
+  static Image appLogo =  const Image(image: AssetImage(''),);
 }
