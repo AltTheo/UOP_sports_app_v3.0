@@ -3,4 +3,5 @@ class UopImages {
 
   static String swimImage = 'assets/images/swim_comp.png';
   static String swimImage2 = 'assets/images/swim_comp2.png';
+  static String profile = 'assets/images/profile-icon.png';
 }
