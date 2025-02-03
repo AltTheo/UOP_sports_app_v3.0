@@ -22,7 +22,7 @@ class BookingsState extends State<Bookings> {
       'bookingType': 'Swim Booking',
       'minutes': '60',
       'bookedTime': '08:00',
-      'date': '2024-07-23'
+      'date': '2024-12-08'
     },
     {
       'bookingType': 'Climb Booking',
@@ -51,6 +51,7 @@ class BookingsState extends State<Bookings> {
   ];
 
   Map<String, List<Map<String, String>>> categorizeBookings() {
+    debugPrint('categorising bookings');
     final Map<String, List<Map<String, String>>> categorizedBookings = {
       'upcoming': [],
       'history': []
@@ -85,13 +86,12 @@ class BookingsState extends State<Bookings> {
   void initState() {
     super.initState();
     _categorizedBookingsFuture = fetchCategorizedBookings();
-    fetchCategorizedBookings();
     Provider.of<RefreshProvider>(context, listen: false).setBookingState(this);
   }
 
   Future<Map<String, List<Map<String, String>>>>
       fetchCategorizedBookings() async {
-    await Future.delayed(const Duration(seconds: 2)); // Simulate network delay
+    // await Future.delayed(const Duration(seconds: 2)); // Simulate network delay
     return categorizeBookings();
   }
 

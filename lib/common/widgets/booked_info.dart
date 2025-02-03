@@ -53,7 +53,7 @@ class BookedInfo extends StatelessWidget {
                             .bodyLarge
                             ?.copyWith(fontWeight: FontWeight.w500)),
                     Text(
-                      '90 mins',
+                      '$minutes mins',
                       style: Theme.of(context)
                           .textTheme
                           .bodyLarge

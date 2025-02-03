@@ -20,8 +20,8 @@ class PrimaryButton extends StatelessWidget {
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              fixedSize: Size(screenWidth * 0.95, screenHeight * 0.075),
+                  borderRadius: BorderRadius.circular(50)),
+              fixedSize: Size(screenWidth * 0.60, screenHeight * 0.075),
               backgroundColor: isEnabled
                   ? Theme.of(context).colorScheme.primary
                   : Colors.grey),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uop_sports_v3/common/app_features/app_bar.dart';
 import 'package:uop_sports_v3/common/app_features/images.dart';
 import 'package:uop_sports_v3/common/widgets/info_bubble.dart';
 
@@ -40,16 +41,13 @@ class _DiscoverState extends State<Discover> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
-    var screenHeight = screenSize.height;
     var screenWidth = screenSize.width;
     return Scaffold(
       drawer: Container(
         width: screenWidth * 0.75,
         color: Theme.of(context).colorScheme.primaryContainer,
       ),
-      appBar: AppBar(
-        title: const Text('Discover'),
-      ),
+      appBar: UopAppBar.actionedAppBar(UopAppBar.notiIcon, 'Discover'),
       body: RefreshIndicator.adaptive(
         onRefresh: () async {},
         child: ListView.builder(

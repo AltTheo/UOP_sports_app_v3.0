@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:uop_sports_v3/navigation/global_key.dart';
+import 'package:uop_sports_v3/utils/device/system_alert.dart';
 import 'package:uop_sports_v3/utils/provider/time_slot_provider.dart';
 import 'package:uop_sports_v3/common/widgets/booking_info.dart';
 import 'package:uop_sports_v3/common/widgets/time_slot.dart';
@@ -83,6 +85,16 @@ class _GymState extends State<Gym> with AutomaticKeepAliveClientMixin {
           barrierDismissible: true,
           context: context,
           builder: (context) => const CircularProgressIndicator.adaptive());
+    }
+
+    void bookSession() async {
+      showLoadDialog();
+      await Future.delayed(const Duration(seconds: 3));
+      if (!mounted) return;
+      navigatorKey.currentState?.pop();
+
+      // ignore: use_build_context_synchronously
+      SystemAlert.showSnackBar(context, 'Booking successful');
     }
 
     void showGymTimePicker() {
@@ -292,7 +304,7 @@ class _GymState extends State<Gym> with AutomaticKeepAliveClientMixin {
                   onPressed: () {
                     Provider.of<TimeSlotProvider>(context, listen: false)
                             .isTimeSelected
-                        ? showLoadDialog()
+                        ? bookSession()
                         : null;
                   },
                   isEnabled:

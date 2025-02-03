@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:uop_sports_v3/auth/sign_in.dart';
 import 'package:uop_sports_v3/auth/sign_up.dart';
 import 'package:uop_sports_v3/common/app_features/app_logo.dart';
@@ -23,18 +21,29 @@ class UopWelcome extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SvgPicture.asset(
+            Image.asset(
               UopAppLogo.uopLogo,
             ),
             Padding(
               padding: EdgeInsets.only(
-                  top: screenHeight * 0.05 /*  */,
-                  left: screenWidth * 0.06,
-                  right: screenWidth * 0.06),
+                  left: screenWidth * 0.06, right: screenWidth * 0.06),
               child: Text(
                 textAlign: TextAlign.center,
-                'UoP Sports',
-                style: Theme.of(context).textTheme.displayLarge,
+                'UOP',
+                style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                    color: Theme.of(context).primaryColor,
+                    fontWeight: FontWeight.w800),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                  left: screenWidth * 0.06, right: screenWidth * 0.06),
+              child: Text(
+                textAlign: TextAlign.center,
+                'SPORTS',
+                style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                    color: Theme.of(context).primaryColor,
+                    fontWeight: FontWeight.w800),
               ),
             ),
             Padding(

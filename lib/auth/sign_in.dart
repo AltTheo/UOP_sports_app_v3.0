@@ -35,7 +35,9 @@ class _SignInPageState extends State<SignInPage> {
             children: [
               Text(
                 'Log into your account',
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    color: Theme.of(context).primaryColor,
+                    fontWeight: FontWeight.w500),
               ),
               Padding(
                 padding: EdgeInsets.only(

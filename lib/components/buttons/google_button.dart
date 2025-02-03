@@ -18,16 +18,19 @@ class GoogleButton extends StatelessWidget {
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            fixedSize: Size(screenWidth * 0.95, screenHeight * 0.075),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(60)),
+            fixedSize: Size(screenWidth * 0.65, screenHeight * 0.075),
           ),
           onPressed: onPressed,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset(UAppIcons.googleIcon),
-              SizedBox(
-                width: screenWidth * 0.05,
+              Padding(
+                padding: const EdgeInsets.only(right: 2.0),
+                child: SvgPicture.asset(
+                  UAppIcons.googleIcon,
+                  height: 30,
+                ),
               ),
               Text(buttonText,
                   style: Theme.of(context)

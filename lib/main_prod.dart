@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uop_sports_v3/app.dart';
-import 'package:uop_sports_v3/env.dart';
+import 'package:uop_sports_v3/app_env.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

@@ -4,14 +4,39 @@ import 'package:provider/provider.dart';
 import 'package:uop_sports_v3/common/widgets/booked_info.dart';
 import 'package:uop_sports_v3/utils/provider/refresh_screen.dart';
 
-class BookingsList extends StatelessWidget {
+class BookingsList extends StatefulWidget {
   final List<Map<String, String>> bookings;
 
   const BookingsList({super.key, required this.bookings});
 
+  @override
+  State<BookingsList> createState() => BookingsListState();
+}
+
+class BookingsListState extends State<BookingsList> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<RefreshProvider>(context, listen: false)
+        .setBookingListState(this);
+  }
+
+  void reloadWidget() {
+    buildGroupedBookings(context);
+  }
+
+  void refreshPage() async {
+    await Provider.of<RefreshProvider>(context, listen: false)
+        .refreshBookings();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
   List<Widget> buildGroupedBookings(BuildContext context) {
+    debugPrint('building grouped bookings');
     Map<String, List<Map<String, String>>> groupedBookings = {};
-    for (var booking in bookings) {
+    for (var booking in widget.bookings) {
       final date = booking['date']!;
       if (!groupedBookings.containsKey(date)) {
         groupedBookings[date] = [];
@@ -48,8 +73,7 @@ class BookingsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return RefreshIndicator.adaptive(
       onRefresh: () async {
-        await Provider.of<RefreshProvider>(context, listen: false)
-            .refreshBookings();
+        refreshPage();
       },
       child: ListView(
         children: buildGroupedBookings(context),
