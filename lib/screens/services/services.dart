@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:uop_sports_v3/common/app_features/app_bar.dart';
 import 'package:uop_sports_v3/screens/services/gym.dart';
 import 'package:uop_sports_v3/screens/services/sports.dart';
+import 'package:uop_sports_v3/screens/services/uop_classes.dart';
 
 class Services extends StatefulWidget {
   const Services({super.key});
@@ -15,32 +17,29 @@ class _ServicesState extends State<Services> {
     return DefaultTabController(
       length: 5,
       child: Scaffold(
-        appBar: AppBar(
-          bottom: const TabBar(dividerColor: Colors.transparent, tabs: [
-            Tab(
-              text: 'Gym',
-            ),
-            Tab(
-              text: 'Sports',
-            ),
-            Tab(
-              text: 'Classes',
-            ),
-            Tab(
-              text: 'Swim',
-            ),
-            Tab(
-              text: 'Climb',
-            ),
-          ]),
-          title: const Text('Services'),
-        ),
+        appBar: UopAppBar.tabAppBar(
+            const TabBar(dividerColor: Colors.transparent, tabs: [
+              Tab(
+                text: 'Gym',
+              ),
+              Tab(
+                text: 'Sports',
+              ),
+              Tab(
+                text: 'Classes',
+              ),
+              Tab(
+                text: 'Swim',
+              ),
+              Tab(
+                text: 'Climb',
+              ),
+            ]),
+            'Services'),
         body: const TabBarView(children: [
           Gym(),
           Sports(),
-          Center(
-            child: Text('View 3'),
-          ),
+          UopClasses(),
           Center(
             child: Text('View 4'),
           ),

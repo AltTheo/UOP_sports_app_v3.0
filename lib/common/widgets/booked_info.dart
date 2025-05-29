@@ -6,20 +6,22 @@ class BookedInfo extends StatelessWidget {
       required this.bookingType,
       required this.minutes,
       required this.bookedTime,
-      this.onTap});
+      this.onTap,
+      this.onLongPress});
 
   final String bookingType;
   final String minutes;
   final String bookedTime;
   final void Function()? onTap;
-
+  final void Function()? onLongPress;
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     var screenHeight = screenSize.height;
     var screenWidth = screenSize.width;
-    return InkWell(
+    return GestureDetector(
       onTap: onTap,
+      onLongPress: onLongPress,
       child: Padding(
         padding: EdgeInsets.only(
           top: screenHeight * 0.02,

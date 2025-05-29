@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:uop_sports_v3/navigation/global_key.dart';
 import 'package:uop_sports_v3/utils/device/system_alert.dart';
+import 'package:uop_sports_v3/utils/provider/refresh_screen.dart';
 import 'package:uop_sports_v3/utils/provider/time_slot_provider.dart';
 import 'package:uop_sports_v3/common/widgets/booking_info.dart';
 import 'package:uop_sports_v3/common/widgets/time_slot.dart';
@@ -12,13 +13,14 @@ class Gym extends StatefulWidget {
   const Gym({super.key});
 
   @override
-  State<Gym> createState() => _GymState();
+  State<Gym> createState() => GymState();
 }
 
-class _GymState extends State<Gym> with AutomaticKeepAliveClientMixin {
+class GymState extends State<Gym> with AutomaticKeepAliveClientMixin {
   final List<bool> _isSelected = [true, false];
   DateTime _selectedDateTime = DateTime.now();
   int selectedMinutes = 60;
+  DateTime? initialTime;
   List<Map<String, dynamic>> timeSlots = [];
 
   DateTime roundToNearest15(DateTime dateTime) {
@@ -36,6 +38,13 @@ class _GymState extends State<Gym> with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
+    _selectedDateTime = roundToNearest15(_selectedDateTime);
+    _generateTimeSlots();
+    Provider.of<RefreshProvider>(context, listen: false).setGymState(this);
+  }
+
+  void refreshPage() async {
+    debugPrint('refreshing the gym page');
     _selectedDateTime = roundToNearest15(_selectedDateTime);
     _generateTimeSlots();
   }
@@ -79,7 +88,14 @@ class _GymState extends State<Gym> with AutomaticKeepAliveClientMixin {
     var screenSize = MediaQuery.of(context).size;
     var screenHeight = screenSize.height;
     var screenWidth = screenSize.width;
-
+    final provider = Provider.of<TimeSlotProvider>(context);
+    String cost = provider.isTimeSelected
+        ? (selectedMinutes == 60
+            ? '£5.50'
+            : selectedMinutes == 90
+                ? '£7.00'
+                : '£0.00')
+        : '£0.00';
     void showLoadDialog() {
       showAdaptiveDialog(
           barrierDismissible: true,
@@ -89,10 +105,21 @@ class _GymState extends State<Gym> with AutomaticKeepAliveClientMixin {
 
     void bookSession() async {
       showLoadDialog();
-      await Future.delayed(const Duration(seconds: 3));
       if (!mounted) return;
+      Provider.of<TimeSlotProvider>(context, listen: false).resetSelection();
+      final newBooking = {
+        'bookingType': 'Gym Booking',
+        'minutes': selectedMinutes.toString(),
+        'bookedTime': formatTime(initialTime ?? DateTime.now()),
+        'date': DateFormat('yyyy-MM-dd').format(DateTime.now())
+      };
+      debugPrint('sending to bookings');
+      final parentState = Provider.of<RefreshProvider>(context, listen: false)
+          .getBookingListState();
+      if (parentState != null) {
+        parentState.addBooking(newBooking);
+      }
       navigatorKey.currentState?.pop();
-
       // ignore: use_build_context_synchronously
       SystemAlert.showSnackBar(context, 'Booking successful');
     }
@@ -123,6 +150,9 @@ class _GymState extends State<Gym> with AutomaticKeepAliveClientMixin {
                                 timeSlot['capacity'],
                                 Theme.of(context).colorScheme.primaryContainer,
                               );
+                              setState(() {
+                                initialTime = timeSlot['time'];
+                              });
                             },
                             spaceLeft: timeSlot['capacity'],
                             time: formatTime(timeSlot['time']),
@@ -284,32 +314,27 @@ class _GymState extends State<Gym> with AutomaticKeepAliveClientMixin {
                 Column(
                   children: [
                     Text(
-                      '£5.50',
+                      cost,
                       style: Theme.of(context)
                           .textTheme
                           .headlineMedium
-                          ?.copyWith(fontWeight: FontWeight.w500),
+                          ?.copyWith(fontWeight: FontWeight.w800),
                     ),
                     Text(
                       'Total cost',
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium
-                          ?.copyWith(fontWeight: FontWeight.w500),
+                          ?.copyWith(fontWeight: FontWeight.w800),
                     ),
                   ],
                 ),
                 BookButton(
                   buttonText: 'Book now',
                   onPressed: () {
-                    Provider.of<TimeSlotProvider>(context, listen: false)
-                            .isTimeSelected
-                        ? bookSession()
-                        : null;
+                    provider.isTimeSelected ? bookSession() : null;
                   },
-                  isEnabled:
-                      Provider.of<TimeSlotProvider>(context, listen: true)
-                          .isTimeSelected,
+                  isEnabled: provider.isTimeSelected,
                 ),
               ],
             ),

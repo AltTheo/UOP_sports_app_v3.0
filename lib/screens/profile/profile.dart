@@ -39,9 +39,16 @@ class _ProfileState extends State<Profile> {
           Padding(
             padding: EdgeInsets.only(top: screenHeight * 0.02),
             child: Text(
-              'Madelyn  Griffin',
+              'Creator  Profile',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: screenHeight * 0.01),
+            child: Text('SUPER',
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.w800)),
           ),
           Padding(
             padding: EdgeInsets.only(top: screenHeight * 0.01),
@@ -49,13 +56,6 @@ class _ProfileState extends State<Profile> {
               'Student Membership',
               style: Theme.of(context).textTheme.bodyLarge,
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: screenHeight * 0.01),
-            child: Text('Super',
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
-                    fontWeight: FontWeight.w800)),
           ),
           Padding(
             padding: EdgeInsets.only(top: screenHeight * 0.03),
@@ -85,13 +85,13 @@ class _ProfileState extends State<Profile> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: screenWidth * 0.06),
-                  child: Text('Mail',
+                  child: Text('Email',
                       style: Theme.of(context).textTheme.bodyLarge),
                 ),
                 Padding(
                   padding: EdgeInsets.only(right: screenWidth * 0.06),
                   child: Text(
-                    'marin@gmail.com',
+                    'creator@profile.com',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 )

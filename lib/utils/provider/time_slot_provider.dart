@@ -29,4 +29,17 @@ class TimeSlotProvider extends ChangeNotifier {
     slotColorState = tempSlotColorState;
     notifyListeners();
   }
+
+  void resetSelection() {
+    selectedIndex = null;
+    selectedDateTime = DateTime.now();
+    spacesLeft = null;
+    isTimeSelected = false;
+    slotColorState = null;
+    tempSelectedIndex = null;
+    tempSelectedDateTime = null;
+    tempSpacesLeft = null;
+    tempSlotColorState = null;
+    notifyListeners();
+  }
 }

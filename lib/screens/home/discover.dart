@@ -43,10 +43,6 @@ class _DiscoverState extends State<Discover> {
     var screenSize = MediaQuery.of(context).size;
     var screenWidth = screenSize.width;
     return Scaffold(
-      drawer: Container(
-        width: screenWidth * 0.75,
-        color: Theme.of(context).colorScheme.primaryContainer,
-      ),
       appBar: UopAppBar.actionedAppBar(UopAppBar.notiIcon, 'Discover'),
       body: RefreshIndicator.adaptive(
         onRefresh: () async {},

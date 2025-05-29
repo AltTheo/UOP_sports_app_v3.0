@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:uop_sports_v3/common/widgets/booked_info.dart';
@@ -23,6 +24,12 @@ class BookingsListState extends State<BookingsList> {
 
   void reloadWidget() {
     buildGroupedBookings(context);
+  }
+
+  void addBooking(Map<String, String> newBooking) {
+    setState(() {
+      widget.bookings.add(newBooking);
+    });
   }
 
   void refreshPage() async {
@@ -62,6 +69,13 @@ class BookingsListState extends State<BookingsList> {
           bookingType: booking['bookingType']!,
           minutes: booking['minutes']!,
           bookedTime: booking['bookedTime']!,
+          onTap: () {
+            debugPrint('Tapped on the booking item');
+          },
+          onLongPress: () {
+            HapticFeedback.heavyImpact();
+            debugPrint('Long pressed on the booking item');
+          },
         ));
       }
     });

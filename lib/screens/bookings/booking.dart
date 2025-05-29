@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uop_sports_v3/common/app_features/app_bar.dart';
 import 'package:uop_sports_v3/screens/bookings/booking_list.dart';
 import 'package:uop_sports_v3/utils/provider/refresh_screen.dart';
 import 'package:provider/provider.dart';
@@ -11,44 +12,7 @@ class Bookings extends StatefulWidget {
 }
 
 class BookingsState extends State<Bookings> {
-  final List<Map<String, String>> bookedInfo = [
-    {
-      'bookingType': 'Gym Booking',
-      'minutes': '90',
-      'bookedTime': '06:30',
-      'date': '2024-07-23'
-    },
-    {
-      'bookingType': 'Swim Booking',
-      'minutes': '60',
-      'bookedTime': '08:00',
-      'date': '2024-12-08'
-    },
-    {
-      'bookingType': 'Climb Booking',
-      'minutes': '90',
-      'bookedTime': '13:30',
-      'date': '2024-07-19'
-    },
-    {
-      'bookingType': 'Class Booking',
-      'minutes': '90',
-      'bookedTime': '18:30',
-      'date': '2024-06-23'
-    },
-    {
-      'bookingType': 'Class Booking',
-      'minutes': '90',
-      'bookedTime': '18:30',
-      'date': '2024-08-23'
-    },
-    {
-      'bookingType': 'Gym Booking',
-      'minutes': '90',
-      'bookedTime': '18:30',
-      'date': '2024-09-23'
-    },
-  ];
+  final List<Map<String, String>> bookedInfo = [];
 
   Map<String, List<Map<String, String>>> categorizeBookings() {
     debugPrint('categorising bookings');
@@ -103,36 +67,35 @@ class BookingsState extends State<Bookings> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: AppBar(
-          bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(48.0),
-              child: Container(
-                height: screenHeight * 0.06,
-                width: screenWidth * 0.55,
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: TabBar(
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  dividerColor: Colors.transparent,
-                  labelColor: Theme.of(context).colorScheme.onPrimary,
-                  indicatorPadding: EdgeInsets.zero,
-                  indicator: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primary,
-                      borderRadius: BorderRadius.circular(20)),
-                  tabs: const [
-                    Tab(
-                      text: 'Upcoming',
-                    ),
-                    Tab(
-                      text: 'History',
-                    )
-                  ],
-                ),
-              )),
-          title: const Text('Bookings'),
-        ),
+        appBar: UopAppBar.tabAppBar(
+            PreferredSize(
+                preferredSize: const Size.fromHeight(48.0),
+                child: Container(
+                  height: screenHeight * 0.06,
+                  width: screenWidth * 0.55,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: TabBar(
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    dividerColor: Colors.transparent,
+                    labelColor: Theme.of(context).colorScheme.onPrimary,
+                    indicatorPadding: EdgeInsets.zero,
+                    indicator: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primary,
+                        borderRadius: BorderRadius.circular(20)),
+                    tabs: const [
+                      Tab(
+                        text: 'Upcoming',
+                      ),
+                      Tab(
+                        text: 'History',
+                      )
+                    ],
+                  ),
+                )),
+            'Bookings'),
         body: FutureBuilder<Map<String, List<Map<String, String>>>>(
           future: _categorizedBookingsFuture,
           builder: (context, snapshot) {

@@ -14,5 +14,6 @@ class AppTheme {
             TextStyle(fontWeight: FontWeight.w500, color: Colors.black),
         type: BottomNavigationBarType.fixed,
       ),
-      appBarTheme: const AppBarTheme(scrolledUnderElevation: 0, ));
+      appBarTheme:
+          const AppBarTheme(scrolledUnderElevation: 0, centerTitle: true));
 }
