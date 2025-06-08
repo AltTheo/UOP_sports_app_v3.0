@@ -22,7 +22,7 @@ class UopSportApp extends StatelessWidget {
         theme: AppTheme.androidLightTheme,
         navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: Appconfig.debugBanner,
-        home: const UopWelcome(),
+        home: const UopBottomNavBar(),
       ),
     );
   }

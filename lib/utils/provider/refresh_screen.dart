@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uop_sports_v3/screens/bookings/booking.dart';
 import 'package:uop_sports_v3/screens/bookings/booking_list.dart';
-import 'package:uop_sports_v3/screens/services/gym.dart';
+import 'package:uop_sports_v3/screens/Gym/gym.dart';
 
 class RefreshProvider extends ChangeNotifier {
   BookingsState? _bookingState;

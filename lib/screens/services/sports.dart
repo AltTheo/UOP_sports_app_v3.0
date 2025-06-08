@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:uop_sports_v3/common/app_features/images.dart';
+import 'package:uop_sports_v3/common/widgets/service_grid.dart';
+import 'package:uop_sports_v3/screens/services/service_model.dart';
 
 class Sports extends StatefulWidget {
   const Sports({super.key});
@@ -21,36 +24,26 @@ class _SportsState extends State<Sports> {
             child: Padding(
               padding: const EdgeInsets.all(8),
               child: Container(
-                height: screenHeight * 0.06,
-                width: screenWidth,
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: TabBar(
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  dividerColor: Colors.transparent,
-                  labelColor: Theme.of(context).colorScheme.onPrimary,
-                  indicatorPadding: EdgeInsets.zero,
-                  indicator: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primary,
-                      borderRadius: BorderRadius.circular(20)),
-                  tabs: const [
-                    Tab(
-                      text: 'Badminton',
-                    ),
-                    Tab(
-                      text: 'Squash',
-                    ),
-                    Tab(
-                      text: 'Squash double',
-                    ),
-                    Tab(
-                      text: 'Table Tennis',
-                    )
-                  ],
-                ),
-              ),
+                  // height: screenHeight * 0.06,
+                  width: screenWidth,
+                  decoration: BoxDecoration(
+                    // color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2, childAspectRatio: 0.9
+                              // crossAxisSpacing: 0.3,
+                              ),
+                      itemCount: sportsGrid.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final sports = sportsGrid[index];
+                        return ServiceCard(
+                          caption: sports.name,
+                          image: sports.imageUrl,
+                        );
+                      })),
             )),
       ),
     );

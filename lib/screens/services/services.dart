@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uop_sports_v3/common/app_features/app_bar.dart';
-import 'package:uop_sports_v3/screens/services/gym.dart';
+import 'package:uop_sports_v3/screens/Gym/gym.dart';
 import 'package:uop_sports_v3/screens/services/sports.dart';
 import 'package:uop_sports_v3/screens/services/uop_classes.dart';
 
@@ -15,13 +15,10 @@ class _ServicesState extends State<Services> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 5,
+      length: 4,
       child: Scaffold(
         appBar: UopAppBar.tabAppBar(
             const TabBar(dividerColor: Colors.transparent, tabs: [
-              Tab(
-                text: 'Gym',
-              ),
               Tab(
                 text: 'Sports',
               ),
@@ -37,7 +34,6 @@ class _ServicesState extends State<Services> {
             ]),
             'Services'),
         body: const TabBarView(children: [
-          Gym(),
           Sports(),
           UopClasses(),
           Center(

@@ -49,8 +49,14 @@ class InfoCard extends StatelessWidget {
                     ),
                     gradient: LinearGradient(
                       colors: [
-                        Theme.of(context).colorScheme.primary.withOpacity(0.6),
-                        Theme.of(context).colorScheme.primary.withOpacity(0.8),
+                        Theme.of(context)
+                            .colorScheme
+                            .primary
+                            .withValues(alpha: 0.6),
+                        Theme.of(context)
+                            .colorScheme
+                            .primary
+                            .withValues(alpha: 0.8),
                         Colors.transparent,
                       ],
                       begin: Alignment.bottomCenter,

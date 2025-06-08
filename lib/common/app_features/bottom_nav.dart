@@ -12,6 +12,11 @@ class UBottomNavBar {
       ),
     ),
     const BottomNavigationBarItem(
+      icon: Icon(CupertinoIcons.timer),
+      label: 'Gym',
+      activeIcon: Icon(CupertinoIcons.timer_fill),
+    ),
+    const BottomNavigationBarItem(
       icon: Icon(CupertinoIcons.briefcase),
       label: 'Services',
       activeIcon: Icon(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:uop_sports_v3/common/app_features/app_bar.dart';
 import 'package:uop_sports_v3/navigation/global_key.dart';
 import 'package:uop_sports_v3/utils/device/system_alert.dart';
 import 'package:uop_sports_v3/utils/provider/refresh_screen.dart';
@@ -192,6 +193,7 @@ class GymState extends State<Gym> with AutomaticKeepAliveClientMixin {
     }
 
     return Scaffold(
+      appBar: UopAppBar.staticAppBar('Gym'),
       body: Column(
         children: [
           Padding(
@@ -230,23 +232,6 @@ class GymState extends State<Gym> with AutomaticKeepAliveClientMixin {
                   child: const Text('90 mins'),
                 ),
               ],
-            ),
-          ),
-          SizedBox(
-            height: screenHeight * 0.35,
-            child: CalendarDatePicker(
-              currentDate: today,
-              initialDate: today,
-              firstDate: today,
-              lastDate: DateTime(today.year, 12, 31),
-              selectableDayPredicate: (day) {
-                return day.year == today.year &&
-                    day.month == today.month &&
-                    day.day == today.day;
-              },
-              onDateChanged: (value) {
-                debugPrint(value.toString());
-              },
             ),
           ),
           Consumer<TimeSlotProvider>(

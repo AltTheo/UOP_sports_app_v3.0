@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uop_sports_v3/common/app_features/bottom_nav.dart';
+import 'package:uop_sports_v3/navigation/custom_nav.dart';
+import 'package:uop_sports_v3/screens/Gym/gym.dart';
 import 'package:uop_sports_v3/screens/bookings/booking.dart';
 import 'package:uop_sports_v3/screens/home/discover.dart';
 import 'package:uop_sports_v3/screens/profile/profile.dart';
@@ -23,6 +25,7 @@ class _UopBottomNavBarState extends State<UopBottomNavBar> {
 
   List<Widget> widgetOptions = <Widget>[
     const Discover(),
+    const Gym(),
     const Services(),
     const Bookings(),
     const Profile()
@@ -37,7 +40,7 @@ class _UopBottomNavBarState extends State<UopBottomNavBar> {
           return widgetOptions[index];
         }),
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: CustomNav(
         items: List.generate(UBottomNavBar.navBarList.length, (index) {
           var item = UBottomNavBar.navBarList[index];
           return BottomNavigationBarItem(
