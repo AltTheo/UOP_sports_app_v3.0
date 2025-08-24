@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:uop_sports_v3/common/app_features/app_bar.dart';
+import 'package:uop_sports_v3/components/wrappers/default_wrapper.dart';
 import 'package:uop_sports_v3/navigation/global_key.dart';
 import 'package:uop_sports_v3/utils/device/system_alert.dart';
 import 'package:uop_sports_v3/utils/provider/refresh_screen.dart';
@@ -192,9 +193,9 @@ class GymState extends State<Gym> with AutomaticKeepAliveClientMixin {
           });
     }
 
-    return Scaffold(
+    return DefaultWrapper(
       appBar: UopAppBar.staticAppBar('Gym'),
-      body: Column(
+      child: Column(
         children: [
           Padding(
             padding: EdgeInsets.only(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uop_sports_v3/common/app_features/images.dart';
 import 'package:uop_sports_v3/common/widgets/service_grid.dart';
 import 'package:uop_sports_v3/components/input/search_input.dart';
+import 'package:uop_sports_v3/components/wrappers/default_wrapper.dart';
 import 'package:uop_sports_v3/screens/services/service_model.dart';
 
 class SportsPage extends StatefulWidget {
@@ -42,8 +43,8 @@ class _SportsPageState extends State<SportsPage> {
     var screenSize = MediaQuery.of(context).size;
     var screenHeight = screenSize.height;
     var screenWidth = screenSize.width;
-    return Scaffold(
-        body: Column(
+    return DefaultWrapper(
+        child: Column(
       children: [
         // Row(
         //   mainAxisAlignment: MainAxisAlignment.spaceBetween,

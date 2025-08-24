@@ -5,6 +5,7 @@ import 'package:uop_sports_v3/components/buttons/google_button.dart';
 import 'package:uop_sports_v3/components/buttons/primary_button.dart';
 import 'package:uop_sports_v3/components/input/password_input.dart';
 import 'package:uop_sports_v3/components/input/text_input.dart';
+import 'package:uop_sports_v3/components/wrappers/default_wrapper.dart';
 import 'package:uop_sports_v3/navigation/global_key.dart';
 import 'package:uop_sports_v3/navigation/uop_bottom_nav.dart';
 
@@ -25,9 +26,9 @@ class _SignInPageState extends State<SignInPage> {
     var screensize = MediaQuery.of(context).size;
     var screenWidth = screensize.width;
     var screenHeight = screensize.height;
-    return Scaffold(
+    return DefaultWrapper(
       appBar: AppBar(),
-      body: Center(
+      child: Center(
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

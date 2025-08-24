@@ -5,6 +5,7 @@ import 'package:uop_sports_v3/app_env.dart';
 import 'package:uop_sports_v3/navigation/global_key.dart';
 import 'package:uop_sports_v3/navigation/uop_bottom_nav.dart';
 import 'package:uop_sports_v3/utils/provider/refresh_screen.dart';
+import 'package:uop_sports_v3/utils/provider/theme_provider.dart';
 import 'package:uop_sports_v3/utils/provider/time_slot_provider.dart';
 import 'package:uop_sports_v3/utils/theme/theme.dart';
 
@@ -16,13 +17,21 @@ class UopSportApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => RefreshProvider()),
-        ChangeNotifierProvider(create: (_) => TimeSlotProvider()),
+        ChangeNotifierProvider(create: (context) => TimeSlotProvider()),
+        ChangeNotifierProvider(
+            create: (_) => ThemeProvider()), // Add ThemeProvider
       ],
-      child: MaterialApp(
-        theme: AppTheme.androidLightTheme,
-        navigatorKey: navigatorKey,
-        debugShowCheckedModeBanner: Appconfig.debugBanner,
-        home: const UopBottomNavBar(),
+      child: Consumer<ThemeProvider>(
+        builder: (context, themeProvider, child) {
+          return MaterialApp(
+            theme: themeProvider.isDarkTheme
+                ? AppTheme.appDarkTheme
+                : AppTheme.appLightTheme,
+            navigatorKey: navigatorKey,
+            debugShowCheckedModeBanner: Appconfig.debugBanner,
+            home: const UopBottomNavBar(),
+          );
+        },
       ),
     );
   }

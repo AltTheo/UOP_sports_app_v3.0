@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uop_sports_v3/common/app_features/app_bar.dart';
+import 'package:uop_sports_v3/components/wrappers/default_wrapper.dart';
 import 'package:uop_sports_v3/screens/bookings/booking_list.dart';
 import 'package:uop_sports_v3/utils/provider/refresh_screen.dart';
 import 'package:provider/provider.dart';
@@ -66,7 +67,7 @@ class BookingsState extends State<Bookings> {
     var screenWidth = screenSize.width;
     return DefaultTabController(
       length: 2,
-      child: Scaffold(
+      child: DefaultWrapper(
         appBar: UopAppBar.tabAppBar(
             PreferredSize(
                 preferredSize: const Size.fromHeight(48.0),
@@ -96,7 +97,7 @@ class BookingsState extends State<Bookings> {
                   ),
                 )),
             'Bookings'),
-        body: FutureBuilder<Map<String, List<Map<String, String>>>>(
+        child: FutureBuilder<Map<String, List<Map<String, String>>>>(
           future: _categorizedBookingsFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {

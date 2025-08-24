@@ -3,6 +3,7 @@ import 'package:uop_sports_v3/auth/sign_in.dart';
 import 'package:uop_sports_v3/auth/sign_up.dart';
 import 'package:uop_sports_v3/common/app_features/app_logo.dart';
 import 'package:uop_sports_v3/components/buttons/primary_button.dart';
+import 'package:uop_sports_v3/components/wrappers/default_wrapper.dart';
 import 'package:uop_sports_v3/navigation/global_key.dart';
 
 class UopWelcome extends StatelessWidget {
@@ -15,8 +16,8 @@ class UopWelcome extends StatelessWidget {
     var screenHeight = screensize.height;
     return PopScope(
       canPop: false,
-      child: Scaffold(
-          body: Center(
+      child: DefaultWrapper(
+          child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,

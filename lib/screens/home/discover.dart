@@ -3,6 +3,7 @@ import 'package:uop_sports_v3/common/app_features/app_bar.dart';
 import 'package:uop_sports_v3/common/app_features/images.dart';
 import 'package:uop_sports_v3/common/widgets/info_bubble.dart';
 import 'package:uop_sports_v3/components/buttons/bell_button.dart';
+import 'package:uop_sports_v3/components/wrappers/default_wrapper.dart';
 import 'package:uop_sports_v3/utils/helper/open_notification.dart';
 
 class Discover extends StatefulWidget {
@@ -44,9 +45,9 @@ class _DiscoverState extends State<Discover> {
   Widget build(BuildContext context) {
     // var screenSize = MediaQuery.of(context).size;
     // var screenWidth = screenSize.width;
-    return Scaffold(
+    return DefaultWrapper(
       appBar: UopAppBar.actionedAppBar(UopAppBar.notiIcon, 'Discover'),
-      body: RefreshIndicator.adaptive(
+      child: RefreshIndicator.adaptive(
         onRefresh: () async {},
         child: ListView.builder(
             itemCount: discoverInfo.length,

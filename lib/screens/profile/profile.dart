@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:uop_sports_v3/common/app_features/images.dart';
 import 'package:uop_sports_v3/common/widgets/setting_item.dart';
+import 'package:uop_sports_v3/components/wrappers/default_wrapper.dart';
+import 'package:uop_sports_v3/utils/provider/theme_provider.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -11,22 +14,15 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  bool isDarkModeEnabled = false;
-
-  void toggleSwitch() {
-    setState(() {
-      isDarkModeEnabled = !isDarkModeEnabled;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     var screenSize = MediaQuery.of(context).size;
     var screenHeight = screenSize.height;
     var screenWidth = screenSize.width;
-    return Scaffold(
+    return DefaultWrapper(
         // appBar: AppBar(),
-        body: SafeArea(
+        child: SafeArea(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -109,14 +105,14 @@ class _ProfileState extends State<Profile> {
               ),
               SettingItem(
                   onTap: () {
-                    toggleSwitch();
+                    themeProvider.toggleTheme();
                   },
                   title: 'Dark mode',
                   icons: CupertinoIcons.moon,
                   trailing: Switch.adaptive(
-                      value: isDarkModeEnabled,
+                      value: themeProvider.isDarkTheme,
                       onChanged: (value) {
-                        toggleSwitch();
+                        themeProvider.toggleTheme();
                       })),
               SettingItem(
                 onTap: () {},
