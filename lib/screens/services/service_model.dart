@@ -12,7 +12,7 @@ List<SportsType> sportsGrid = [
   SportsType(name: 'Dodgeball', imageUrl: UopImages.swimImage),
   SportsType(name: 'Football', imageUrl: UopImages.swimImage),
   SportsType(name: 'Netball', imageUrl: UopImages.swimImage),
-  SportsType(name: 'Scholar Activities', imageUrl: UopImages.swimImage),
+  SportsType(name: 'Scholar Activities', imageUrl: UopImages.swimImage2),
   SportsType(name: 'TASS Athletes', imageUrl: UopImages.swimImage),
-  SportsType(name: 'Volleyball', imageUrl: UopImages.swimImage),
+  SportsType(name: 'Volleyball', imageUrl: UopImages.swimImage2),
 ];

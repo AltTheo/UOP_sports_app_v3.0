@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SearchInput extends StatelessWidget {
@@ -10,13 +11,15 @@ class SearchInput extends StatelessWidget {
       this.labelText,
       this.errorText,
       required this.keyboardType,
-      required this.action});
+      required this.action,
+      this.hintText});
 
   final TextEditingController controller;
   final bool autofocus;
   final Function(String)? onFieldSubmitted;
   final Function(String)? onChanged;
   final String? labelText;
+  final String? hintText;
   final String? errorText;
   final TextInputType keyboardType;
   final TextInputAction action;
@@ -39,22 +42,31 @@ class SearchInput extends StatelessWidget {
         onChanged: onChanged,
         autofocus: autofocus,
         decoration: InputDecoration(
-          contentPadding: const EdgeInsets.only(left: 20, bottom: 10),
-          labelText: labelText,
-          hintText: 'Search',
-          hintStyle: Theme.of(context).textTheme.bodyLarge,
-          labelStyle: Theme.of(context).textTheme.bodyLarge,
-          errorText: errorText,
-          errorStyle: Theme.of(context)
-              .textTheme
-              .bodyMedium
-              ?.copyWith(color: Colors.red),
-          errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
-              borderSide:
-                  BorderSide(color: Theme.of(context).colorScheme.error)),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-        ),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            labelText: labelText,
+            hintText: hintText,
+            hintStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onSurface
+                      .withValues(alpha: 0.5),
+                ),
+            labelStyle: Theme.of(context).textTheme.bodyLarge,
+            errorText: errorText,
+            errorStyle: Theme.of(context)
+                .textTheme
+                .bodyMedium
+                ?.copyWith(color: Colors.red),
+            errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide:
+                    BorderSide(color: Theme.of(context).colorScheme.error)),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+            suffix: const Icon(
+              CupertinoIcons.search,
+              size: 25,
+            )),
       ),
     );
   }

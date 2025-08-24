@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:uop_sports_v3/common/app_features/app_bar.dart';
 import 'package:uop_sports_v3/screens/Gym/gym.dart';
-import 'package:uop_sports_v3/screens/services/sports.dart';
-import 'package:uop_sports_v3/screens/services/uop_classes.dart';
+import 'package:uop_sports_v3/screens/services/sports_page.dart';
+import 'package:uop_sports_v3/screens/services/swim_page.dart';
+import 'package:uop_sports_v3/screens/services/uop_class_page.dart';
 
 class Services extends StatefulWidget {
   const Services({super.key});
@@ -34,11 +35,9 @@ class _ServicesState extends State<Services> {
             ]),
             'Services'),
         body: const TabBarView(children: [
-          Sports(),
+          SportsPage(),
           UopClasses(),
-          Center(
-            child: Text('View 4'),
-          ),
+          SwimPage(),
           Center(
             child: Text('View 5'),
           )

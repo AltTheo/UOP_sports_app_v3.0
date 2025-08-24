@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:uop_sports_v3/common/app_features/app_bar.dart';
 import 'package:uop_sports_v3/common/app_features/images.dart';
 import 'package:uop_sports_v3/common/widgets/info_bubble.dart';
+import 'package:uop_sports_v3/components/buttons/bell_button.dart';
+import 'package:uop_sports_v3/utils/helper/open_notification.dart';
 
 class Discover extends StatefulWidget {
   const Discover({super.key});
